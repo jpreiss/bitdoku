@@ -11,11 +11,16 @@ bool solve(Sudoku &sudoku)
 		sudoku.reset_change_flag();
 
 		trivial_pass(sudoku);
+
 		only_in_row_pass(sudoku);
-		only_in_col_pass(sudoku);
-		only_in_block_pass(sudoku);
 		row_box_pass(sudoku);
-		col_box_pass(sudoku);
+
+		sudoku.transpose();
+		only_in_row_pass(sudoku);
+		row_box_pass(sudoku);
+		sudoku.transpose();
+
+		only_in_block_pass(sudoku);
 
 		if (!sudoku.is_changed())
 		{

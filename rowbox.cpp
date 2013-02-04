@@ -60,10 +60,3 @@ void row_box_pass(Sudoku &sudoku)
 		row_box(sudoku, i);
 	}
 }
-
-void col_box_pass(Sudoku &sudoku)
-{
-	sudoku.transpose();
-	row_box_pass(sudoku);
-	sudoku.transpose();
-}

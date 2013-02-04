@@ -38,13 +38,6 @@ void only_in_row_pass(Sudoku &sudoku)
 	}
 }
 
-void only_in_col_pass(Sudoku &sudoku)
-{
-	sudoku.transpose();
-	only_in_row_pass(sudoku);
-	sudoku.transpose();
-}
-
 void only_in_block(Sudoku &sudoku, int row_block, int col_block)
 {
 	int friends_who_contain[9] = { 0 };
