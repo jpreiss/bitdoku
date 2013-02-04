@@ -6,23 +6,17 @@
 // then no other cells in that box can possibly be K.
 // also true: transpose "row" and "box".
 
-bool box_row_eliminate(Sudoku &sudoku, int row, int box, int eliminate_mask)
+void box_row_eliminate(Sudoku &sudoku, int row, int box, int eliminate_mask)
 {
-	bool changed = false;
 	for (int col = box * 3; col < (box + 1) * 3; ++col)
 	{
 		int cell = sudoku(row, col);
 		int newcell = subtract(cell, eliminate_mask);
-		if (cell != newcell)
-		{
-			sudoku(row, col) = newcell;
-			changed = true;
-		}
+		sudoku.set(row, col, newcell);
 	}
-	return changed;
 }
 
-bool row_box(Sudoku &sudoku, int row)
+void row_box(Sudoku &sudoku, int row)
 {
 	int boxes_who_contain[9] = { 0 };
 	for (int col = 0; col < 9; ++col)
@@ -38,7 +32,6 @@ bool row_box(Sudoku &sudoku, int row)
 		}	
 	}
 
-	bool changed = false;
 	for (int num = 0; num < 9; ++num)
 	{
 		int boxes = boxes_who_contain[num];
@@ -54,29 +47,23 @@ bool row_box(Sudoku &sudoku, int row)
 			int other_rows = subtract(other_rows_mask, mask(row));
 			lowest_two_set(other_rows, other_row_1, other_row_2);
 
-			bool r1 = box_row_eliminate(sudoku, other_row_1, box, mask(num));
-			bool r2 = box_row_eliminate(sudoku, other_row_2, box, mask(num));
-			changed = changed || r1 || r2;
+			box_row_eliminate(sudoku, other_row_1, box, mask(num));
+			box_row_eliminate(sudoku, other_row_2, box, mask(num));
 		}
 	}
-	return changed;
 }
 
-bool row_box_pass(Sudoku &sudoku)
+void row_box_pass(Sudoku &sudoku)
 {
-	bool changed = false;
 	for (int i = 0; i < 9; ++i)
 	{
-		bool this_row = row_box(sudoku, i);
-		changed = changed || this_row;
+		row_box(sudoku, i);
 	}
-	return changed;
 }
 
-bool col_box_pass(Sudoku &sudoku)
+void col_box_pass(Sudoku &sudoku)
 {
 	sudoku.transpose();
-	bool out = row_box_pass(sudoku);
+	row_box_pass(sudoku);
 	sudoku.transpose();
-	return out;
 }

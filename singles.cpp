@@ -3,7 +3,7 @@
 #include "sudoku.h"
 #include "bitwise.h"
 
-bool only_in_row(Sudoku &sudoku, int row)
+void only_in_row(Sudoku &sudoku, int row)
 {
 	int cols_who_contain[9] = { 0 };
 	for (int col = 0; col < 9; ++col)
@@ -18,44 +18,34 @@ bool only_in_row(Sudoku &sudoku, int row)
 			}
 		}
 	}
-	bool changed = false;
+
 	for (int num = 0; num < 9; ++num)
 	{
 		int cols = cols_who_contain[num];
 		if (1 == num_ones(cols))
 		{
 			int col = unmask(cols);
-			if (sudoku(row, col) != mask(num))
-			{
-				sudoku(row, col) = mask(num);
-				if (!sudoku.is_valid()) throw std::exception("invalid board.");
-				changed = true;
-			}
+			sudoku.set(row, col, mask(num));
 		}
 	}
-	return changed;
 }
 
-bool only_in_row_pass(Sudoku &sudoku)
+void only_in_row_pass(Sudoku &sudoku)
 {
-	bool changed = false;
 	for (int i = 0; i < 9; ++i)
 	{
-		bool row_changed = only_in_row(sudoku, i);
-		changed = changed || row_changed;
+		only_in_row(sudoku, i);
 	}
-	return changed;
 }
 
-bool only_in_col_pass(Sudoku &sudoku)
+void only_in_col_pass(Sudoku &sudoku)
 {
 	sudoku.transpose();
-	bool changed = only_in_row_pass(sudoku);
+	only_in_row_pass(sudoku);
 	sudoku.transpose();
-	return changed;
 }
 
-bool only_in_block(Sudoku &sudoku, int row_block, int col_block)
+void only_in_block(Sudoku &sudoku, int row_block, int col_block)
 {
 	int friends_who_contain[9] = { 0 };
 
@@ -77,7 +67,7 @@ bool only_in_block(Sudoku &sudoku, int row_block, int col_block)
 			}
 		}
 	}
-	bool changed = false;
+
 	for (int num = 0; num < 9; ++num)
 	{
 		int friends = friends_who_contain[num];
@@ -87,25 +77,19 @@ bool only_in_block(Sudoku &sudoku, int row_block, int col_block)
 			blockunmask(friends, row, col);
 			if (sudoku(row_base + row, col_base + col) != mask(num))
 			{
-				sudoku(row_base + row, col_base + col) = mask(num);
-				if (!sudoku.is_valid()) throw std::exception("invalid board.");
-				changed = true;
+				sudoku.set(row_base + row, col_base + col, mask(num));
 			}
 		}
 	}
-	return changed;
 }
 
-bool only_in_block_pass(Sudoku &sudoku)
+void only_in_block_pass(Sudoku &sudoku)
 {
-	bool changed = false;
 	for (int row_block = 0; row_block < 3; ++row_block)
 	{
 		for (int col_block = 0; col_block < 3; ++col_block)
 		{
-			bool block_changed = only_in_block(sudoku, row_block, col_block);
-			changed = changed || block_changed;
+			only_in_block(sudoku, row_block, col_block);
 		}
 	}
-	return changed;
 }

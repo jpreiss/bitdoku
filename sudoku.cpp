@@ -28,14 +28,46 @@ Sudoku &Sudoku::operator=(Sudoku const &other)
 	return *this;
 }
 
-Sudoku Sudoku::transposed()
+void Sudoku::reset_change_flag()
+{
+	change_flag = false;
+}
+
+bool Sudoku::is_changed() const
+{
+	return change_flag;
+}
+
+void Sudoku::set(int row, int col, int value)
+{
+	if ((*this)(row, col) != value)
+	{
+		board[row * 9 + col] = value;
+
+		// this is really more of a debug assert
+		// is_valid also slows us down a lot
+		if (!is_valid())
+		{
+			throw std::exception("Change caused an invalid puzzle.");
+		}
+
+		change_flag = true;
+	}
+}
+
+int const &Sudoku::operator()(int const row, int const col) const
+{
+	return board[row * 9 + col];
+}
+
+Sudoku Sudoku::transposed() const
 {
 	Sudoku temp;
 	for (int row = 0; row < 9; ++row)
 	{
 		for (int col = 0; col < 9; ++col)
 		{
-			temp(col, row) = (*this)(row, col);
+			temp.board[row * 9 + col] = board[col * 9 + row];
 		}
 	}
 	return temp;
@@ -47,12 +79,12 @@ void Sudoku::transpose()
 	(*this) = xp;
 }
 
-bool Sudoku::is_solved()
+bool Sudoku::is_solved() const
 {
 	return std::all_of(board, board + 81, ::is_solved);
 }
 
-bool Sudoku::row_is_valid(int row)
+bool Sudoku::row_is_valid(int row) const
 {
 	int singletons = 0;
 	for (int i = 0; i < 9; ++i)
@@ -70,13 +102,13 @@ bool Sudoku::row_is_valid(int row)
 	return true;
 }
 
-bool Sudoku::col_is_valid(int col)
+bool Sudoku::col_is_valid(int col) const
 {
 	Sudoku xp = this->transposed();
 	return xp.row_is_valid(col);
 }
 
-bool Sudoku::block_is_valid(int row, int col)
+bool Sudoku::block_is_valid(int row, int col) const
 {
 	int singletons = 0;
 	int row_block = row / 3;
@@ -99,7 +131,7 @@ bool Sudoku::block_is_valid(int row, int col)
 	return true;
 }
 
-bool Sudoku::is_valid()
+bool Sudoku::is_valid() const
 {
 	for (int i = 0; i < 9; ++i)
 	{
@@ -140,14 +172,4 @@ void Sudoku::prettyprint(std::ostream &out, int row_highlight, int col_highlight
 		}
 		out << std::endl;
 	}
-}
-	
-// it's more useful to keep the 1D array and overload 2D indexing
-int &Sudoku::operator()(int const row, int const col)
-{
-	return board[row * 9 + col];
-}
-int const &Sudoku::operator()(int const row, int const col) const
-{
-	return board[row * 9 + col];
 }
