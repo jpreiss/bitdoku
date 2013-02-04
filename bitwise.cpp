@@ -54,6 +54,9 @@ int subtract(int a, int b)
 	return a & (~b);
 }
 
+// gets the indices of the lowest two bits set in a.
+// stored in first and second, lowest first.
+// -1 if not enough bits set.
 void lowest_two_set(int a, int &first, int &second)
 {
 	int shifts = 0;

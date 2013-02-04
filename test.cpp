@@ -41,6 +41,9 @@ void test_bitwise()
 
 	lowest_two_set(0x110, a, b);
 	assert((a == 4) && (b == 8));
+
+	lowest_two_set(0xF30, a, b);
+	assert((a == 4) && (b == 5));
 }
 
 void color(unsigned short color)
@@ -74,6 +77,7 @@ int main()
 	int nums[81];
 	while (cases.good())
 	{
+		// relying on well-formed test case file.
 		int next = cases.peek();
 		if ('#' == next)
 		{			
@@ -87,7 +91,7 @@ int main()
 				nums[i] = cases.get() - '0';
 			}
 
-			bool solved;
+			bool solved = false;
 			try
 			{
 				Sudoku su(nums);
