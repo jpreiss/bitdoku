@@ -55,9 +55,14 @@ void Sudoku::set(int row, int col, int value)
 	}
 }
 
-int const &Sudoku::operator()(int const row, int const col) const
+int const &Sudoku::get(int const row, int const col) const
 {
 	return board[row * 9 + col];
+}
+
+int const &Sudoku::operator()(int const row, int const col) const
+{
+	return get(row, col);
 }
 
 Sudoku Sudoku::transposed() const
@@ -171,5 +176,47 @@ void Sudoku::prettyprint(std::ostream &out, int row_highlight, int col_highlight
 			out << print_cell((*this)(row, col));
 		}
 		out << std::endl;
+	}
+}
+
+void Sudoku::digit_to_column_map(int row, int output[9]) const
+{
+	std::fill(output, output + 9, 0);
+
+	for (int col = 0; col < 9; ++col)
+	{
+		for (int num = 0; num < 9; ++num)
+		{
+			int num_mask = mask(num);
+			if (get(row, col) & num_mask)
+			{
+				int col_mask = mask(col);
+				output[num] |= col_mask;
+			}
+		}
+	}
+}
+
+void Sudoku::digit_to_block_map(int row_block, int col_block, int output[9]) const
+{
+	std::fill(output, output + 9, 0);
+
+	int row_base = row_block * 3;
+	int col_base = col_block * 3;
+
+	for (int row = 0; row < 3; ++row)
+	{
+		for (int col = 0; col < 3; ++col)
+		{
+			for (int num = 0; num < 9; ++num)
+			{
+				int num_mask = mask(num);
+				if (get(row_base + row, col_base + col) & num_mask)
+				{
+					int block_mask = blockmask(row, col);
+					output[num] |= block_mask;
+				}
+			}
+		}
 	}
 }

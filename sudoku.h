@@ -16,6 +16,7 @@ public:
 
 	// element access
 	void set(int row, int col, int value);
+	int const &get(int const row, int const col) const;
 	int const &operator()(int const row, int const col) const;
 
 	Sudoku transposed() const;
@@ -36,6 +37,15 @@ public:
 	static char print_cell(int cell);
 
 	void prettyprint(std::ostream &out, int row_highlight = -1, int col_highlight = -1) const;
+
+	// fills the array *output* such that
+	// for each digit d, (output[d] | mask(c)) == true iff d is possible at board[row][c].
+	void digit_to_column_map(int row, int output[9]) const;
+
+	// fills the array *output* such that
+	// for each digit d, (output[d] | blockmask(r, c)) == true iff d is possible at block[r][c]
+	// block is specified by row_block and col_block which can take values 0, 1, or 2
+	void digit_to_block_map(int row_block, int col_block, int output[9]) const;
 
 private:
 	bool change_flag;

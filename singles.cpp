@@ -5,19 +5,8 @@
 
 void only_in_row(Sudoku &sudoku, int row)
 {
-	int cols_who_contain[9] = { 0 };
-	for (int col = 0; col < 9; ++col)
-	{
-		for (int num = 0; num < 9; ++num)
-		{
-			int num_mask = mask(num);
-			if (sudoku(row, col) & num_mask)
-			{
-				int col_mask = mask(col);
-				cols_who_contain[num] |= col_mask;
-			}
-		}
-	}
+	int cols_who_contain[9];
+	sudoku.digit_to_column_map(row, cols_who_contain);
 
 	for (int num = 0; num < 9; ++num)
 	{
@@ -42,24 +31,10 @@ void only_in_block(Sudoku &sudoku, int row_block, int col_block)
 {
 	int friends_who_contain[9] = { 0 };
 
+	sudoku.digit_to_block_map(row_block, col_block, friends_who_contain);
+
 	int row_base = row_block * 3;
 	int col_base = col_block * 3;
-
-	for (int row = 0; row < 3; ++row)
-	{
-		for (int col = 0; col < 3; ++col)
-		{
-			for (int num = 0; num < 9; ++num)
-			{
-				int num_mask = mask(num);
-				if (sudoku(row_base + row, col_base + col) & num_mask)
-				{
-					int block_mask = blockmask(row, col);
-					friends_who_contain[num] |= block_mask;
-				}
-			}
-		}
-	}
 
 	for (int num = 0; num < 9; ++num)
 	{
