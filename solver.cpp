@@ -14,13 +14,16 @@ bool solve(Sudoku &sudoku)
 
 		only_in_row_pass(sudoku);
 		row_box_pass(sudoku);
+		row_double_pass(sudoku);
 
 		sudoku.transpose();
 		only_in_row_pass(sudoku);
 		row_box_pass(sudoku);
+		row_double_pass(sudoku);
 		sudoku.transpose();
 
 		only_in_block_pass(sudoku);
+		block_doubles_pass(sudoku);
 
 		if (!sudoku.is_changed())
 		{

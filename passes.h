@@ -13,3 +13,7 @@ void only_in_block_pass(Sudoku &sudoku);
 // when all of a row's possiblities for digit K lie in a single box,
 // then no other cells in that box can possibly be K.
 void row_box_pass(Sudoku &sudoku);
+
+// naked or hidden doubles
+void row_double_pass(Sudoku &sudoku);
+void block_doubles_pass(Sudoku &sudoku);

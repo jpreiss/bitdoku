@@ -40,7 +40,7 @@ bool Sudoku::is_changed() const
 
 void Sudoku::set(int row, int col, int value)
 {
-	if ((*this)(row, col) != value)
+	if (get(row, col) != value)
 	{
 		board[row * 9 + col] = value;
 

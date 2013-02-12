@@ -69,6 +69,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bitwise.cpp" />
+    <ClCompile Include="doubles.cpp" />
     <ClCompile Include="rowbox.cpp" />
     <ClCompile Include="singles.cpp" />
     <ClCompile Include="solver.cpp" />
