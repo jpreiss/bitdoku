@@ -21,3 +21,26 @@ int subtract(int a, int b);
 // stored in first and second, lowest first.
 // -1 if not enough bits set.
 void lowest_two_set(int a, int &first, int &second);
+
+//
+// iterates over the indices of the 1 bits in an integer.
+//
+class SetBitIndexIterator
+{
+public:
+	SetBitIndexIterator(int bits);
+
+	static SetBitIndexIterator end();
+
+	bool operator!=(SetBitIndexIterator const other);
+	bool operator==(SetBitIndexIterator const other);
+
+	void operator++();
+
+	int operator*();
+
+private:
+	void advance();
+	int bits_;
+	int index_;
+};

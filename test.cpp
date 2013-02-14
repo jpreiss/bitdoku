@@ -44,6 +44,30 @@ void test_bitwise()
 
 	lowest_two_set(0xF30, a, b);
 	assert((a == 4) && (b == 5));
+
+	SetBitIndexIterator sbii0(0);
+	assert(sbii0 == SetBitIndexIterator::end());
+
+	SetBitIndexIterator sbii1(1);
+	assert(sbii1 != SetBitIndexIterator::end());
+	assert(*sbii1 == 0);
+	++sbii1;
+	assert(sbii1 == SetBitIndexIterator::end());
+
+	SetBitIndexIterator sbii2(2);
+	assert(sbii2 != SetBitIndexIterator::end());
+	assert(*sbii2 == 1);
+	++sbii2;
+	assert(sbii2 == SetBitIndexIterator::end());
+
+	SetBitIndexIterator sbii3(3);
+	assert(sbii3 != SetBitIndexIterator::end());
+	assert(*sbii3 == 0);
+	++sbii3;
+	assert(sbii3 != SetBitIndexIterator::end());
+	assert(*sbii3 == 1);
+	++sbii3;
+	assert(sbii3 == SetBitIndexIterator::end());
 }
 
 void color(unsigned short color)
