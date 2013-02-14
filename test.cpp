@@ -68,6 +68,18 @@ void test_bitwise()
 	assert(*sbii3 == 1);
 	++sbii3;
 	assert(sbii3 == SetBitIndexIterator::end());
+
+	HammingWeightIterator ham1(1);
+	assert(ham1.next() == 1);
+	assert(ham1.next() == 2);
+	assert(ham1.next() == 4);
+	assert(ham1.next() == 8);
+
+	HammingWeightIterator ham2(2);
+	assert(ham2.next() == 3);
+	assert(ham2.next() == 5);
+	assert(ham2.next() == 6);
+	assert(ham2.next() == 9);
 }
 
 void color(unsigned short color)

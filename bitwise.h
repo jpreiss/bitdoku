@@ -44,3 +44,21 @@ private:
 	int bits_;
 	int index_;
 };
+
+//
+// iterates over all numbers through 0x1FF
+// with a specified hamming weight
+//
+class HammingWeightIterator
+{
+public:
+	HammingWeightIterator(int weight);
+
+	// returns -1 when the set is exhausted
+	int next();
+
+private:
+	static int const MAX = 0x1FF;
+	int const weight_;
+	int state_;
+};
