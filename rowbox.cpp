@@ -1,5 +1,6 @@
 #include "sudoku.h"
 #include "bitwise.h"
+#include "passtools.hpp"
 
 // row-box interaction.
 // when all of a row's possiblities for digit K lie in a single box,
@@ -55,8 +56,5 @@ void row_box(Sudoku &sudoku, int row)
 
 void row_box_pass(Sudoku &sudoku)
 {
-	for (int i = 0; i < 9; ++i)
-	{
-		row_box(sudoku, i);
-	}
+	row_op_pass(sudoku, row_box);
 }

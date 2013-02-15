@@ -2,6 +2,7 @@
 
 #include "sudoku.h"
 #include "bitwise.h"
+#include "passtools.hpp"
 
 void only_in_row(Sudoku &sudoku, int row)
 {
@@ -16,14 +17,6 @@ void only_in_row(Sudoku &sudoku, int row)
 			int col = unmask(cols);
 			sudoku.set(row, col, mask(num));
 		}
-	}
-}
-
-void only_in_row_pass(Sudoku &sudoku)
-{
-	for (int i = 0; i < 9; ++i)
-	{
-		only_in_row(sudoku, i);
 	}
 }
 
@@ -51,13 +44,12 @@ void only_in_block(Sudoku &sudoku, int row_block, int col_block)
 	}
 }
 
+void only_in_row_pass(Sudoku &sudoku)
+{
+	row_op_pass(sudoku, only_in_row);
+}
+
 void only_in_block_pass(Sudoku &sudoku)
 {
-	for (int row_block = 0; row_block < 3; ++row_block)
-	{
-		for (int col_block = 0; col_block < 3; ++col_block)
-		{
-			only_in_block(sudoku, row_block, col_block);
-		}
-	}
+	block_op_pass(sudoku, only_in_block);
 }
