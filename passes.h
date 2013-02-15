@@ -14,6 +14,6 @@ void only_in_block_pass(Sudoku &sudoku);
 // then no other cells in that box can possibly be K.
 void row_box_pass(Sudoku &sudoku);
 
-// naked or hidden doubles
-void row_double_pass(Sudoku &sudoku);
-void block_doubles_pass(Sudoku &sudoku);
+// groups - naked doubles, hidden triples, etc..
+void block_groups_pass(Sudoku &sudoku, int group_size);
+void row_groups_pass(Sudoku &sudoku, int group_size);

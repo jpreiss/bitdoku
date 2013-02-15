@@ -69,20 +69,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bitwise.cpp" />
-    <ClCompile Include="doubles.cpp" />
+    <ClCompile Include="blockindexiterator.cpp" />
+    <ClCompile Include="HammingWeightIterator.cpp" />
+    <ClCompile Include="hugeprint.cpp" />
     <ClCompile Include="rowbox.cpp" />
+    <ClCompile Include="SetBitIndexIterator.cpp" />
     <ClCompile Include="singles.cpp" />
     <ClCompile Include="solver.cpp" />
     <ClCompile Include="sudoku.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="groups.cpp" />
     <ClCompile Include="trivial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test_cases.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asciiart.h" />
     <ClInclude Include="bitwise.h" />
     <ClInclude Include="passes.h" />
+    <ClInclude Include="passtools.hpp" />
     <ClInclude Include="solver.h" />
     <ClInclude Include="sudoku.h" />
   </ItemGroup>

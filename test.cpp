@@ -128,10 +128,11 @@ int main()
 			}
 
 			bool solved = false;
+			Sudoku puzzle(nums);
+			Sudoku working(nums);
 			try
 			{
-				Sudoku su(nums);
-				solved = solve(su);
+				solved = solve(working);
 			}
 			catch (std::exception &e)
 			{
@@ -147,6 +148,7 @@ int main()
 			{
 				red();
 				std::cout << "FAIL" << std::endl;
+				//working.hugeprint(std::cout); break;
 				white();
 			}
 		}

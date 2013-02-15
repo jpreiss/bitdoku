@@ -14,16 +14,23 @@ bool solve(Sudoku &sudoku)
 
 		only_in_row_pass(sudoku);
 		row_box_pass(sudoku);
-		row_double_pass(sudoku);
+		for (int size = 2; size < 5; ++size)
+		{
+			row_groups_pass(sudoku, size);
+			block_groups_pass(sudoku, size);
+		}
 
 		sudoku.transpose();
 		only_in_row_pass(sudoku);
 		row_box_pass(sudoku);
-		row_double_pass(sudoku);
+		for (int size = 2; size < 5; ++size)
+		{
+			row_groups_pass(sudoku, size);
+			block_groups_pass(sudoku, size);
+		};
 		sudoku.transpose();
 
 		only_in_block_pass(sudoku);
-		block_doubles_pass(sudoku);
 
 		if (!sudoku.is_changed())
 		{

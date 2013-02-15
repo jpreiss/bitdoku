@@ -37,6 +37,7 @@ public:
 	static char print_cell(int cell);
 
 	void prettyprint(std::ostream &out, int row_highlight = -1, int col_highlight = -1) const;
+	void hugeprint(std::ostream &out) const;
 
 	// fills the array *output* such that
 	// for each digit d, (output[d] | mask(c)) == true iff d is possible at board[row][c].
@@ -50,4 +51,32 @@ public:
 private:
 	bool change_flag;
 	int board[81];
+};
+
+struct Index
+{
+	char row;
+	char column;
+};
+
+class BlockIndexIterator
+{
+public:
+	BlockIndexIterator(int row_block, int col_block);
+
+	static BlockIndexIterator const end();
+
+	bool operator==(BlockIndexIterator const other) const;
+	bool operator!=(BlockIndexIterator const other) const;
+
+	void operator++();
+	Index operator*() const;
+
+	Index withinBlock() const;
+
+private:
+	char row_;
+	char col_;
+	char row_base_;
+	char col_base_;
 };

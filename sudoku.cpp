@@ -1,3 +1,5 @@
+#include <cassert>
+#include <exception>
 #include <algorithm>
 #include <ostream>
 
@@ -20,6 +22,11 @@ Sudoku::Sudoku(int serialized[81])
 		return mask(puzz - 1);
 	};
 	std::transform(serialized, serialized + 81, board, setup);
+
+	if (!is_valid())
+	{
+		//throw std::exception("Invalid puzzle.");
+	}
 }
 
 Sudoku &Sudoku::operator=(Sudoku const &other)
@@ -44,11 +51,16 @@ void Sudoku::set(int row, int col, int value)
 	{
 		board[row * 9 + col] = value;
 
+		if (value == 0)
+		{
+			throw std::exception("tried to set a cell to 0.");
+		}
+
 		// this is really more of a debug assert
 		// is_valid also slows us down a lot
 		if (!is_valid())
 		{
-			throw std::exception("Change caused an invalid puzzle.");
+			throw std::exception("Change made the puzzle invalid.");
 		}
 
 		change_flag = true;

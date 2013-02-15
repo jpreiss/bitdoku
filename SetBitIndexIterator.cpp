@@ -37,7 +37,7 @@ void SetBitIndexIterator::operator++()
 	{
 		advance();
 	}
-	while ((!bits_ & 1) && bits_ != 0);
+	while (!(bits_ & 1) && bits_ != 0);
 
 	if (0 == bits_)
 	{
