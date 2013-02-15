@@ -54,6 +54,9 @@
     <ClCompile Include="passtools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xwing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test_cases.txt" />

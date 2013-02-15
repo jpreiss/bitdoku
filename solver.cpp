@@ -24,12 +24,14 @@ bool solve(Sudoku &sudoku)
 		only_in_row_pass(sudoku);
 		row_box_pass(sudoku);
 		group_size_loop(sudoku, row_groups_pass);
+		xwing_pass(sudoku);
 
 		sudoku.transpose();
 		{
 			only_in_row_pass(sudoku);
 			row_box_pass(sudoku);
 			group_size_loop(sudoku, row_groups_pass);
+			xwing_pass(sudoku);
 		}
 		sudoku.transpose();
 

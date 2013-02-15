@@ -17,3 +17,5 @@ void row_box_pass(Sudoku &sudoku);
 // groups - naked doubles, hidden triples, etc..
 void block_groups_pass(Sudoku &sudoku, int group_size);
 void row_groups_pass(Sudoku &sudoku, int group_size);
+
+void xwing_pass(Sudoku &sudoku);

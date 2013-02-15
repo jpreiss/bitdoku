@@ -81,6 +81,7 @@
     <ClCompile Include="test.cpp" />
     <ClCompile Include="groups.cpp" />
     <ClCompile Include="trivial.cpp" />
+    <ClCompile Include="xwing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test_cases.txt" />
