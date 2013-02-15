@@ -1,6 +1,6 @@
 #include "sudoku.h"
 #include "bitwise.h"
-#include "passtools.hpp"
+#include "passtools.h"
 
 // row-box interaction.
 // when all of a row's possiblities for digit K lie in a single box,

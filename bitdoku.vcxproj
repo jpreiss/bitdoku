@@ -72,6 +72,7 @@
     <ClCompile Include="blockindexiterator.cpp" />
     <ClCompile Include="HammingWeightIterator.cpp" />
     <ClCompile Include="hugeprint.cpp" />
+    <ClCompile Include="passtools.cpp" />
     <ClCompile Include="rowbox.cpp" />
     <ClCompile Include="SetBitIndexIterator.cpp" />
     <ClCompile Include="singles.cpp" />
@@ -88,7 +89,7 @@
     <ClInclude Include="asciiart.h" />
     <ClInclude Include="bitwise.h" />
     <ClInclude Include="passes.h" />
-    <ClInclude Include="passtools.hpp" />
+    <ClInclude Include="passtools.h" />
     <ClInclude Include="solver.h" />
     <ClInclude Include="sudoku.h" />
   </ItemGroup>

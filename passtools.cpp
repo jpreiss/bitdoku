@@ -1,8 +1,4 @@
-#pragma once
-
-#include <functional>
-
-class Sudoku;
+#include "passtools.h"
 
 void row_op_pass(Sudoku &sudoku, std::function<void(Sudoku&, int)> row_op)
 {

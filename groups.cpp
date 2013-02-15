@@ -1,7 +1,7 @@
 #include "sudoku.h"
 #include "passes.h"
 #include "bitwise.h"
-#include "passtools.hpp"
+#include "passtools.h"
 
 
 // gets the union of all possiblities

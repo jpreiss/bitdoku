@@ -2,7 +2,7 @@
 
 #include "sudoku.h"
 #include "bitwise.h"
-#include "passtools.hpp"
+#include "passtools.h"
 
 void only_in_row(Sudoku &sudoku, int row)
 {

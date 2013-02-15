@@ -51,6 +51,9 @@
     <ClCompile Include="hugeprint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="passtools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test_cases.txt" />
@@ -68,10 +71,10 @@
     <ClInclude Include="solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="passtools.hpp">
+    <ClInclude Include="asciiart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="asciiart.h">
+    <ClInclude Include="passtools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
