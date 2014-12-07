@@ -1,62 +1,62 @@
 #pragma once
 
-char* big_one[] = 
+char const * big_one[] = 
 {
 	" 1 ",
 	" | ",
 	" i "
 };
 
-char* big_two[] = 
+char const * big_two[] = 
 {
 	"--,",
 	" _|",
 	"/__"
 };
 
-char* big_three[] = 
+char const * big_three[] = 
 {
 	"--,",
 	" < ",
 	"--'"
 };
 
-char* big_four[] = 
+char const * big_four[] = 
 {
 	", ,",
 	"|_|",
 	"  |"
 };
 
-char* big_five[] = 
+char const * big_five[] = 
 {
 	",--",
 	"|_.",
 	"__|"
 };
 
-char* big_six[] = 
+char const * big_six[] = 
 {
 	" , ",
 	"/-,",
 	"\\_/"
 };
 
-char* big_seven[] = 
+char const * big_seven[] = 
 {
 	"---",
 	" / ",
 	"/  "
 };
 
-char* big_eight[] = 
+char const * big_eight[] = 
 {
 	",-,",
 	" x ",
 	"'-'"
 };
 
-char* big_nine[] = 
+char const * big_nine[] = 
 {
 	",-,",
 	"L /",
@@ -64,7 +64,7 @@ char* big_nine[] =
 };
 
 // YES! I AM FINALLY A THREE-STAR C PROGRAMMER!
-char **number_art_lookup[] = 
+char const  **number_art_lookup[] = 
 {
 	big_one,
 	big_two,

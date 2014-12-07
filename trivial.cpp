@@ -1,4 +1,4 @@
-#include <exception>
+#include <stdexcept>
 #include <functional>
 
 #include "sudoku.h"
@@ -17,11 +17,11 @@ void row_apply(Sudoku &sudoku, int row, int col, std::function<int(int)> func)
 		int next = func(prev);
 		if (next == 0)
 		{
-			throw std::exception("cell with no possibilities left.");
+			throw std::runtime_error("cell with no possibilities left.");
 		}
 		if (next != prev && is_solved(prev))
 		{
-			throw std::exception("tried to modify an already-solved cell.");
+			throw std::runtime_error("tried to modify an already-solved cell.");
 		}
 		sudoku.set(row, i, next);
 	}
@@ -50,11 +50,11 @@ void block_apply(Sudoku &sudoku, int row, int col, std::function<int(int)> func)
 			int next = func(prev);
 			if (next == 0)
 			{
-				throw std::exception("cell with no possibilities left.");
+				throw std::runtime_error("cell with no possibilities left.");
 			}
 			if (next != prev && is_solved(prev))
 			{
-				throw std::exception("tried to modify an already-solved cell.");
+				throw std::runtime_error("tried to modify an already-solved cell.");
 			}
 			sudoku.set(r, c, next);
 		}

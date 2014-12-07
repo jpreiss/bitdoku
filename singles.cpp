@@ -1,4 +1,4 @@
-#include <exception>
+#include <stdexcept>
 
 #include "sudoku.h"
 #include "bitwise.h"

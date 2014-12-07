@@ -1,5 +1,5 @@
 #include <cassert>
-#include <exception>
+#include <stdexcept>
 #include <algorithm>
 #include <ostream>
 
@@ -25,7 +25,7 @@ Sudoku::Sudoku(int serialized[81])
 
 	if (!is_valid())
 	{
-		//throw std::exception("Invalid puzzle.");
+		//throw std::runtime_error("Invalid puzzle.");
 	}
 }
 
@@ -53,14 +53,14 @@ void Sudoku::set(int row, int col, int value)
 
 		if (value == 0)
 		{
-			throw std::exception("tried to set a cell to 0.");
+			throw std::runtime_error("tried to set a cell to 0.");
 		}
 
 		// this is really more of a debug assert
 		// is_valid also slows us down a lot
 		if (!is_valid())
 		{
-			throw std::exception("Change made the puzzle invalid.");
+			throw std::runtime_error("Change made the puzzle invalid.");
 		}
 
 		change_flag = true;

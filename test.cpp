@@ -3,9 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-// ughhh.... for output coloring
-#include <Windows.h>
-
 #include "bitwise.h"
 #include "sudoku.h"
 #include "solver.h"
@@ -84,23 +81,24 @@ void test_bitwise()
 
 void color(unsigned short color)
 {
-    HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hcon,color);
+	// TODO: was using Windows stuff, figure out a way to make cross-platform
+    // HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+    // SetConsoleTextAttribute(hcon,color);
 }
 
 void green()
 {
-	color(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	// color(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 }
 
 void red()
 {
-	color(FOREGROUND_RED | FOREGROUND_INTENSITY);
+	// color(FOREGROUND_RED | FOREGROUND_INTENSITY);
 }
 
 void white()
 {
-	color(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+	// color(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 }
 
 // benchmarks
@@ -158,7 +156,4 @@ int main()
 			cases.get();
 		}
 	}
-
-	std::string in;
-	std::cin >> in;
 }
